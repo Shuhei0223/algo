@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GOAL</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <header>
+       <h1>GOAL</h1>
+        <div id="roomDisplay">
+            ルーム：----
+        </div>
+    </header>
+
+
+    <!-- ========================= -->
+    <!-- ロビー -->
+    <!-- ========================= -->
+
+    <section id="lobby">
+
+        <h2>ONLINE BATTLE</h2>
+
+<div class="parentSelect">
+
+    <h3>親の決め方</h3>
+
+    <label>
+        <input
+            type="radio"
+            name="parentMode"
+            value="me"
+            checked
+        >
+        自分が親
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="parentMode"
+            value="opponent"
+        >
+        相手が親
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="parentMode"
+            value="random"
+        >
+        ランダム
+    </label>
+
+</div>
+
+<button id="createRoom">
+    ルームを作成
+</button>
+        <div class="joinArea">
+
+            <input
+                id="roomInput"
+                type="text"
+                maxlength="6"
+                placeholder="ルームID"
+            >
+
+            <button id="joinRoom">
+                ルーム参加
+            </button>
+
+        </div>
+
+        <p id="lobbyMessage"></p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- ゲーム -->
+    <!-- ========================= -->
+
+    <main id="game" class="hidden">
+
+        <div id="status">
+            待機中
+        </div>
+
+
+        <!-- ===================== -->
+        <!-- 相手 -->
+        <!-- ===================== -->
+
+        <section class="playerSection opponent">
+
+            <h2>相手</h2>
+
+            <div
+                id="opponentHand"
+                class="hand"
+            ></div>
+
+        </section>
+
+
+        <!-- ===================== -->
+        <!-- 山札 -->
+        <!-- ===================== -->
+
+        <section class="deckArea">
+
+            <div class="deck">
+
+                <div class="deckLabel">
+                    DECK
+                </div>
+
+                <div
+                    id="deckCount"
+                    class="deckCount"
+                >
+                    残り16枚
+                </div>
+
+            </div>
+
+
+            <!-- 自分が引いたカード -->
+
+            <div id="drawArea">
+
+                <p>今回引いたカード</p>
+
+                <div
+                    id="drawnCard"
+                    class="card hidden"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================== -->
+        <!-- 自分 -->
+        <!-- ===================== -->
+
+        <section class="playerSection me">
+
+            <h2>あなた</h2>
+
+            <div
+                id="myHand"
+                class="hand"
+            ></div>
+
+        </section>
+
+
+        <!-- ===================== -->
+        <!-- アタック -->
+        <!-- ===================== -->
+
+        <section
+            id="attackPanel"
+            class="panel hidden"
+        >
+
+            <h2>ATTACK</h2>
+
+            <p>
+                相手のカードを選択してください
+            </p>
+
+            <div id="selectedCard">
+                選択なし
+            </div>
+
+            <p>
+                宣言する数字
+            </p>
+
+            <div
+                id="numberButtons"
+                class="numberButtons"
+            ></div>
+
+            <button
+                id="attackButton"
+                disabled
+            >
+                アタック！
+            </button>
+
+        </section>
+
+
+        <!-- ===================== -->
+        <!-- 成功後 -->
+        <!-- ===================== -->
+
+        <section
+            id="successPanel"
+            class="panel hidden"
+        >
+
+            <h2>アタック成功！</h2>
+
+            <p>
+                続けてアタックしますか？
+            </p>
+
+            <button id="continueButton">
+                続けてアタック
+            </button>
+
+            <button id="endTurnButton">
+                ターン交代
+            </button>
+
+        </section>
+
+
+        <!-- ===================== -->
+        <!-- メッセージ -->
+        <!-- ===================== -->
+
+        <div id="message"></div>
+
+
+        <!-- ===================== -->
+        <!-- ゲーム終了 -->
+        <!-- ===================== -->
+
+        <section
+            id="gameOver"
+            class="panel hidden"
+        >
+
+            <h2 id="gameOverTitle">
+                GAME OVER
+            </h2>
+
+            <button
+                onclick="location.reload()"
+            >
+                ロビーに戻る
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+
+</body>
+
+</html>

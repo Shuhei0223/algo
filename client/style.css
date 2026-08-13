@@ -1,0 +1,541 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+
+    font-family:
+        Arial,
+        "Noto Sans JP",
+        sans-serif;
+
+    background:
+        #f1f1f1;
+
+    color: #222;
+
+    text-align: center;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+
+    font-size: 48px;
+    letter-spacing: 8px;
+}
+
+#roomDisplay {
+    margin-top: 8px;
+
+    font-weight: bold;
+
+    color: #666;
+}
+
+button {
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px 20px;
+
+    margin: 5px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    background: #222;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+input {
+    padding: 12px;
+
+    border:
+        1px solid #bbb;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    width: 150px;
+
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   ロビー
+========================= */
+
+#lobby {
+    max-width: 500px;
+
+    margin: 60px auto;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.1);
+}
+
+.joinArea {
+    margin-top: 20px;
+}
+
+#lobbyMessage {
+    min-height: 24px;
+}
+
+/* ========================================
+   親の決め方
+======================================== */
+
+.parentSelect {
+    margin: 20px 0;
+}
+
+.parentSelect h3 {
+    margin-bottom: 12px;
+}
+
+.parentSelect label {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto !important;
+    margin: 6px 0 !important;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.parentSelect label input[type="radio"] {
+    margin: 0 !important;
+    width: auto;
+}
+
+
+/* =========================
+   ゲーム
+========================= */
+
+#game {
+    max-width: 900px;
+
+    margin:
+        0 auto;
+}
+
+#status {
+    padding: 12px;
+
+    margin-bottom: 20px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   プレイヤー
+========================= */
+
+.playerSection {
+    margin: 20px 0;
+
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 20px;
+}
+
+.playerSection h2 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   手札
+========================= */
+
+.hand {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    min-height: 150px;
+}
+
+
+/* =========================
+   カード
+========================= */
+
+.card {
+    width: 90px;
+    height: 130px;
+
+    border-radius: 12px;
+
+    background: white;
+
+    border: 3px solid #222;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    box-shadow:
+        0 4px 8px rgba(0,0,0,0.2);
+
+    font-weight: bold;
+
+    transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+}
+
+
+/* =========================
+   黒カード
+========================= */
+
+.card.black {
+    background: #222;
+
+    color: white;
+
+    border-color: #000;
+}
+
+
+/* =========================
+   白カード
+========================= */
+
+.card.white {
+    background: #fff;
+
+    color: #222;
+
+    border-color: #777;
+}
+
+
+/* =========================
+   カードの色
+========================= */
+
+.card .cardColor {
+    position: absolute;
+
+    top: 8px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   数字
+========================= */
+
+.card .cardNumber {
+    font-size: 42px;
+
+    line-height: 1;
+}
+
+
+/* =========================
+   クローズカード
+========================= */
+
+.card.closed {
+    /*
+     * 数字は隠すが、
+     * 黒/白は見える
+     */
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #444,
+            #444 8px,
+            #555 8px,
+            #555 16px
+        );
+
+    border-color: #222;
+
+    color: white;
+}
+
+
+/* クローズされた黒カード */
+
+.card.closed.black {
+    background: #222;
+}
+
+
+/* クローズされた白カード */
+
+.card.closed.white {
+    background: #fff;
+
+    color: #222;
+
+    border-color: #777;
+}
+
+
+/* =========================
+   選択可能な相手カード
+========================= */
+
+.card.selectable {
+    cursor: pointer;
+}
+
+
+/* ターン中は少し浮かせる */
+
+.card.selectable:hover {
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.25);
+}
+
+
+/* =========================
+   選択したカード
+========================= */
+
+.card.selected {
+    transform:
+        translateY(-12px);
+
+    box-shadow:
+        0 0 0 4px #ff9800,
+        0 10px 20px rgba(0,0,0,0.3);
+}
+/* =========================
+   山札
+========================= */
+
+.deckArea {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 50px;
+
+    margin: 20px 0;
+}
+
+.deck {
+    width: 100px;
+    height: 130px;
+
+    border-radius: 12px;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #222 0px,
+            #222 8px,
+            #555 8px,
+            #555 16px
+        );
+
+    color: white;
+
+    border-radius: 8px;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.2);
+}
+
+.deckLabel {
+    font-size: 12px;
+}
+
+/* DECK 残り枚数 */
+.deckCount {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+/* =========================
+   引いたカード
+========================= */
+
+#drawArea {
+    min-width: 120px;
+}
+
+#drawArea p {
+    font-size: 13px;
+}
+
+#drawnCard {
+    margin: auto;
+}
+
+
+/* =========================
+   パネル
+========================= */
+
+.panel {
+    margin: 20px auto;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.1);
+}
+
+#selectedCard {
+    margin: 15px;
+
+    font-weight: bold;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   数字ボタン
+========================= */
+
+.numberButtons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    max-width: 500px;
+
+    margin: 15px auto;
+
+    gap: 8px;
+}
+
+.numberButtons button {
+    margin: 0;
+
+    padding: 12px 5px;
+}
+
+
+/* =========================
+   メッセージ
+========================= */
+
+#message {
+    min-height: 30px;
+
+    margin: 15px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .card {
+        width: 65px;
+        height: 100px;
+    }
+
+    .card .cardNumber {
+        font-size: 30px;
+    }
+
+    .hand {
+        gap: 6px;
+    }
+
+    .deckArea {
+        gap: 20px;
+    }
+
+    .numberButtons {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+}
