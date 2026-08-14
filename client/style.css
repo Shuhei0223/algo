@@ -617,3 +617,28 @@ input {
     width: 32px;
     height: 47px;
 }
+
+/* ========================================
+   自分のオープンカード
+======================================== */
+
+.card.opened {
+    opacity: 0.65;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.2);
+}
+
+.openLabel {
+    position: absolute;
+
+    bottom: 6px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    color: #333;
+}

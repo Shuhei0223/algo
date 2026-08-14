@@ -375,21 +375,34 @@ function createCardElement(
 
     if (!isOpponent) {
 
-        element.classList.add(card.color);
+    element.classList.add(card.color);
 
-        element.innerHTML = `
+    // オープン済み
+    if (card.open) {
 
-            <div class="cardColor">
-                ${colorName}
-            </div>
-
-            <div class="cardNumber">
-                ${card.number}
-            </div>
-
-        `;
+        element.classList.add("opened");
 
     }
+
+    element.innerHTML = `
+
+        <div class="cardColor">
+            ${colorName}
+        </div>
+
+        <div class="cardNumber">
+            ${card.number}
+        </div>
+
+        ${
+            card.open
+                ? `<div class="openLabel">OPEN</div>`
+                : ""
+        }
+
+    `;
+
+}
 
 
     // ====================================
