@@ -289,6 +289,9 @@ function renderMyHand() {
 
     myHandElement.innerHTML = "";
 
+    myHandElement.className =
+        `hand cards-${myHand.length}`;
+
     myHand.forEach((card, index) => {
 
         const element =
@@ -301,7 +304,6 @@ function renderMyHand() {
         myHandElement.appendChild(element);
 
     });
-
 }
 
 
@@ -316,30 +318,22 @@ function renderOpponentHand() {
 
     opponentHandElement.innerHTML = "";
 
-    const reversedHand =
-        [...opponentHand].reverse();
+    opponentHandElement.className =
+        `hand cards-${opponentHand.length}`;
 
-    reversedHand.forEach((card) => {
-
-        // 元の配列でのindexを取得
-        const originalIndex =
-            opponentHand.indexOf(card);
+    opponentHand.forEach((card, index) => {
 
         const element =
             createCardElement(
                 card,
                 true,
-                originalIndex
+                index
             );
 
-        opponentHandElement.appendChild(
-            element
-        );
+        opponentHandElement.appendChild(element);
 
     });
-
 }
-
 
 
 // ========================================

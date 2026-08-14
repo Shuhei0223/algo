@@ -192,12 +192,16 @@ input {
     display: flex;
 
     justify-content: center;
+    align-items: center;
 
-    gap: 12px;
+    gap: 8px;
 
-    flex-wrap: wrap;
+    /* 2段目にしない */
+    flex-wrap: nowrap;
 
     min-height: 150px;
+
+    width: 100%;
 }
 
 
@@ -233,8 +237,10 @@ input {
     transition:
         transform 0.15s,
         box-shadow 0.15s;
-}
 
+    /* 重要 */
+    flex-shrink: 1;
+}
 
 /* =========================
    黒カード
@@ -538,4 +544,76 @@ input {
         grid-template-columns:
             repeat(4, 1fr);
     }
+}
+
+/* 4枚 */
+.hand.cards-4 .card {
+    width: 90px;
+    height: 130px;
+}
+
+/* 5枚 */
+.hand.cards-5 .card {
+    width: 80px;
+    height: 116px;
+}
+
+/* 6枚 */
+.hand.cards-6 .card {
+    width: 70px;
+    height: 102px;
+}
+
+/* 7枚 */
+.hand.cards-7 .card {
+    width: 62px;
+    height: 90px;
+}
+
+/* 8枚 */
+.hand.cards-8 .card {
+    width: 56px;
+    height: 82px;
+}
+
+/* 9枚 */
+.hand.cards-9 .card {
+    width: 50px;
+    height: 74px;
+}
+
+/* 10枚 */
+.hand.cards-10 .card {
+    width: 46px;
+    height: 68px;
+}
+
+/* 11枚 */
+.hand.cards-11 .card {
+    width: 42px;
+    height: 62px;
+}
+
+/* 12枚 */
+.hand.cards-12 .card {
+    width: 39px;
+    height: 58px;
+}
+
+/* 13枚 */
+.hand.cards-13 .card {
+    width: 36px;
+    height: 54px;
+}
+
+/* 14枚 */
+.hand.cards-14 .card {
+    width: 34px;
+    height: 50px;
+}
+
+/* 15枚 */
+.hand.cards-15 .card {
+    width: 32px;
+    height: 47px;
 }
