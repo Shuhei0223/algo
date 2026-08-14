@@ -225,9 +225,6 @@ function startTurn(room) {
         return;
     }
 
-    // 前回の引いたカードを消す
-    player.drawnCard = null;
-
     // 山札から1枚引く
     if (room.deck.length === 0) {
         console.log("山札がありません");
@@ -250,10 +247,48 @@ function startTurn(room) {
 
 function changeTurn(room) {
 
+    // 現在のターンプレイヤー
+    const player =
+        room.players.find(
+            p => p.color === room.turn
+        );
+
+    // ========================================
+    // 引いていたカードを手札に戻す
+    // ========================================
+
+    if (player && player.drawnCard) {
+
+        // クローズ状態のまま手札へ追加
+        player.drawnCard.open = false;
+
+        player.hand.push(
+            player.drawnCard
+        );
+
+        // 並び順を整える
+        sortHand(
+            player.hand
+        );
+
+        // 引いたカードを消す
+        player.drawnCard = null;
+    }
+
+
+    // ========================================
+    // ターン交代
+    // ========================================
+
     room.turn =
         room.turn === "red"
             ? "blue"
             : "red";
+
+
+    // ========================================
+    // 次のプレイヤーのターン開始
+    // ========================================
 
     startTurn(room);
 }
