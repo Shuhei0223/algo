@@ -313,7 +313,6 @@ function renderMyHand() {
 // 相手側から見た並びになるように
 // 表示だけ左右反転する
 // ========================================
-
 function renderOpponentHand() {
 
     opponentHandElement.innerHTML = "";
@@ -321,13 +320,20 @@ function renderOpponentHand() {
     opponentHandElement.className =
         `hand cards-${opponentHand.length}`;
 
-    opponentHand.forEach((card, index) => {
+    const reversedHand =
+        [...opponentHand].reverse();
+
+    reversedHand.forEach((card) => {
+
+        // 元の配列でのindexを取得
+        const originalIndex =
+            opponentHand.indexOf(card);
 
         const element =
             createCardElement(
                 card,
                 true,
-                index
+                originalIndex
             );
 
         opponentHandElement.appendChild(element);
