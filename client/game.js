@@ -707,17 +707,8 @@ socket.on(
     "attackResult",
     data => {
 
-        if (data.success) {
-
-            message.textContent =
-                "🎯 アタック成功！";
-
-        } else {
-
-            message.textContent =
-                "❌ アタック失敗！";
-
-        }
+        message.textContent =
+            data.message;
 
     }
 );

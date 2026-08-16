@@ -717,14 +717,25 @@ setTimeout(() => {
 
 
         // 成功メッセージ
-        socket.emit(
-            "attackResult",
-            {
-                success: true,
-                message: "アタック成功！"
-            }
-        );
+        
+        // アタックした側への通知
+socket.emit(
+    "attackResult",
+    {
+        success: true,
+        message: "🎯 アタック成功！"
+    }
+);
 
+
+// アタックを受けた側への通知
+io.to(opponent.id).emit(
+    "attackResult",
+    {
+        success: true,
+        message: "⚠️ アタックされたカードがオープンしました！"
+    }
+);
 
         // ====================================
         // すべてオープンしたか
